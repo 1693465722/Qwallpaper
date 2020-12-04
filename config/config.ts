@@ -39,45 +39,68 @@ export default defineConfig({
     },
     {
       path: '/',
+      component: './content/index',
+    },
+    {
+      path: '/admin',
       component: '../layouts/SecurityLayout',
       routes: [
         {
-          path: '/',
+          path: '/admin',
           component: '../layouts/BasicLayout',
           authority: ['admin', 'user'],
           routes: [
             {
-              path: '/',
-              redirect: '/welcome',
+              path: '/admin',
+              redirect: '/admin/welcome',
             },
             {
-              path: '/welcome',
+              path: '/admin/welcome',
               name: 'welcome',
               icon: 'smile',
               component: './Welcome',
             },
             {
-              path: '/admin',
-              name: 'admin',
-              icon: 'crown',
-              component: './Admin',
-              authority: ['admin'],
+              name: 'list.table-list',
+              icon: 'table',
+              path: '/admin/list',
+              component: './ListTableList',
+            },
+            {
+              name: '用户管理',
+              icon: 'table',
+              path: '/admin/userManagement',
+              // component: './userManagement',
               routes: [
                 {
-                  path: '/admin/sub-page',
-                  name: 'sub-page',
+                  path: '/admin/userManagement/Registered',
+                  name: '注册用户',
                   icon: 'smile',
-                  component: './Welcome',
+                  component: './userManagement/Registered',
+                  authority: ['admin'],
+                },
+                {
+                  path: '/admin/userManagement/Tourist',
+                  name: '游客管理',
+                  icon: 'smile',
+                  component: './userManagement/Tourist',
                   authority: ['admin'],
                 },
               ],
             },
             {
-              name: 'list.table-list',
+              name: '壁纸管理',
               icon: 'table',
-              path: '/list',
-              component: './ListTableList',
+              path: '/admin/Wallpaper/index',
+              component: './Wallpaper/index',
             },
+            {
+              name: '日志管理',
+              icon: 'table',
+              path: '/admin/Log/index',
+              component: './Log/index',
+            },
+ 
             {
               component: './404',
             },
